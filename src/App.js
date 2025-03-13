@@ -6,6 +6,7 @@ import TeamMembersSection from './components/TeamMembersSection';
 import Footer from './components/Footer';
 import './App.css';
 import ContactPage from './components/Contact.js';
+import AboutUs from './components/About.js';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
                 <TeamMembersSection />
               </>
             } />
+            <Route path="/about" element={<AboutUs />} />
             <Route path="/events" element={<EventsSection />} />
             <Route path="/team" element={<TeamMembersSection />} />
             <Route path="/contact" element={<ContactPage />} />

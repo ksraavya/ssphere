@@ -16,7 +16,7 @@ const EventCard = ({ image, title, date, description }) => {
         </div>
         <h3 className="text-xl font-bold mb-2 text-neonBlue">{title}</h3>
         <p className="text-textDim text-sm mb-4">{description}</p>
-        <button className="bg-primary hover:bg-primary/80 text-text font-bold py-2 px-4 rounded transition-colors duration-300 border border-transparent hover:border-neonPurple">
+        <button className="bg-primary hover:bg-primary/80 text-text font-bold py-2 px-4 rounded transition-colors duration-300 border border-transparent hover:border-neonPurple cursor-none">
           Learn More
         </button>
       </div>

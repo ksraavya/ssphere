@@ -13,16 +13,16 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-secondary py-4 px-6 shadow-md backdrop-blur-sm bg-opacity-90 border-b border-midnight">
+    <nav className="fixed top-0 w-full bg-secondary py-4 px-6 shadow-md backdrop-blur-sm bg-opacity-90 border-b border-midnight z-50 cursor-none">
       <div className="container mx-auto flex justify-between items-center">
-        <div className="text-neonBlue text-2xl font-bold neon-glow">StartupSphere</div>
+        <div className="text-neonBlue text-2xl font-bold neon-glow cursor-none">StartupSphere</div>
         
         <div className="hidden md:flex space-x-8">
           {navItems.map((item) => (
             <Link 
               key={item.name}
               to={item.path}
-              className={`text-lg font-medium transition-colors duration-300 ${
+              className={`text-lg font-medium transition-colors duration-300 cursor-none ${
                 active === item.name 
                   ? 'text-primary neon-glow' 
                   : 'text-textDim hover:text-neonBlue'

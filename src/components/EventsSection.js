@@ -1,7 +1,18 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import EventCard from './EventCard';
 
 const EventsSection = () => {
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  
+    useEffect(() => {
+      const updateCursor = (e) => {
+        setCursorPosition({ x: e.clientX, y: e.clientY });
+      };
+  
+      document.addEventListener("mousemove", updateCursor);
+      return () => document.removeEventListener("mousemove", updateCursor);
+    }, []);
+  
   const scrollRef = useRef(null);
   
   const events = [
@@ -44,7 +55,13 @@ const EventsSection = () => {
   };
 
   return (
-    <section className="py-16 bg-gradient-midnight">
+    <section className="py-16 bg-gradient-midnight mt-16 cursor-none">
+      {/* Custom Cursor */}
+      <div
+        className="custom-cursor fixed w-4 h-4 bg-yellow-400 rounded-full pointer-events-none transition-transform transform -translate-x-1/2 -translate-y-1/2 z-50"
+        style={{ left: `${cursorPosition.x}px`, top: `${cursorPosition.y}px` }}
+      ></div>
+
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-neonBlue mb-2 gradient-text">Events</h2>
@@ -54,7 +71,7 @@ const EventsSection = () => {
         <div className="relative">
           {/* Left arrow */}
           <button 
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-secondary/70 hover:bg-neonBlue/30 text-white rounded-full p-2 transition-all duration-300"
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-secondary/70 hover:bg-neonBlue/30 text-white rounded-full p-2 transition-all duration-300 cursor-none"
             onClick={() => scroll('left')}
             aria-label="Previous events"
           >
@@ -83,7 +100,7 @@ const EventsSection = () => {
           
           {/* Right arrow */}
           <button 
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-secondary/70 hover:bg-neonBlue/30 text-white rounded-full p-2 transition-all duration-300"
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-secondary/70 hover:bg-neonBlue/30 text-white rounded-full p-2 transition-all duration-300 cursor-none"
             onClick={() => scroll('right')}
             aria-label="Next events"
           >

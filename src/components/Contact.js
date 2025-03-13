@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 // import astro from "/public/astronaut.js"
 
 const ContactPage = () => {
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const updateCursor = (e) => {
+      setCursorPosition({ x: e.clientX, y: e.clientY });
+    };
+
+    document.addEventListener("mousemove", updateCursor);
+    return () => document.removeEventListener("mousemove", updateCursor);
+  }, []);
+
   return (
-    <div className="min-h-screen py-16 bg-gradient-midnight text-white flex flex-col items-center justify-center p-6">
+    <div className="min-h-screen py-16 bg-gradient-midnight text-white flex flex-col items-center justify-center p-6 cursor-none mt-16">
+      {/* Custom Cursor */}
+      <div
+        className="custom-cursor fixed w-4 h-4 bg-yellow-400 rounded-full pointer-events-none transition-transform transform -translate-x-1/2 -translate-y-1/2 z-50"
+        style={{ left: `${cursorPosition.x}px`, top: `${cursorPosition.y}px` }}
+      ></div>
+
       <h1 className="text-4xl font-bold text-neonBlue mb-2 gradient-text">
         Get in <span className="text-4xl font-bold text-neonBlue mb-2 gradient-text">touch</span>
       </h1>
@@ -20,29 +37,29 @@ const ContactPage = () => {
               <input
                 type="text"
                 placeholder="First Name"
-                className="w-1/2 p-3 bg-gray-700 rounded-md focus:outline-none"
+                className="w-1/2 p-3 bg-gray-700 rounded-md focus:outline-none cursor-none"
               />
               <input
                 type="text"
                 placeholder="Last Name"
-                className="w-1/2 p-3 bg-gray-700 rounded-md focus:outline-none"
+                className="w-1/2 p-3 bg-gray-700 rounded-md focus:outline-none cursor-none"
               />
             </div>
             <input
               type="email"
               placeholder="Email"
-              className="p-3 bg-gray-700 rounded-md focus:outline-none"
+              className="p-3 bg-gray-700 rounded-md focus:outline-none cursor-none"
             />
             <input
               type="text"
               placeholder="Phone Number"
-              className="p-3 bg-gray-700 rounded-md focus:outline-none"
+              className="p-3 bg-gray-700 rounded-md focus:outline-none cursor-none"
             />
             <textarea
               placeholder="Message"
-              className="p-3 bg-gray-700 rounded-md focus:outline-none h-24"
+              className="p-3 bg-gray-700 rounded-md focus:outline-none h-24 cursor-none"
             ></textarea>
-            <button className="bg-purple-500 p-3 rounded-md hover:bg-purple-600 transition flex items-center justify-center">
+            <button className="bg-purple-500 p-3 rounded-md hover:bg-purple-600 transition flex items-center justify-center cursor-none">
               Send the Message <span className="ml-2">🚀</span>
             </button>
           </form>

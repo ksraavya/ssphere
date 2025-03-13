@@ -10,9 +10,26 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   @apply bg-gradient-cyberpunk text-text min-h-screen;
+  cursor: none;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.image-scroll-container {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  white-space: nowrap;  
+  width: 100%;
+  max-width: 1024px;
+  display: flex;
+}
+
+.image-scroll {
+  display: flex;
+  gap: 16px;  
+}
+
